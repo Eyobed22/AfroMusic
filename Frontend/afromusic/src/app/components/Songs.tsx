@@ -1,16 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/reducers";
 import { css, SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
 import * as actions from "../../store/actions";
-
+import { updateSong } from "../../store/songSlice";
+import { resetForm } from "../../store/formSlice";
 import StyledButton from "../styledComponents/StyledButton";
-import { faTrashAlt, faPencilAlt  } from "@fortawesome/free-solid-svg-icons";
+import { faTrashAlt, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
 import { setFormData, setFormMode } from "../../store/formSlice";
 import { dbSong } from "../../types";
 import { removeSong } from "../../store/songSlice";
+import toast from "react-hot-toast";
+import Form from "./Form";
+import Song from "./Song";
+import Modal from "./Modal";
+
+interface formData {
+  _id: string;
+  title: string;
+  artist: string;
+  album: string;
+  genre: string;
+}
 
 // Emotion CSS styles
 const tableStyles: SerializedStyles = css`
@@ -54,23 +67,49 @@ const Songs: React.FC = () => {
   const { searchTerm } = useSelector((state: RootState) => state.search);
   const { genre } = useSelector((state: RootState) => state.genreFilter);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   useEffect(() => {
     dispatch(actions.readAllSongs());
   }, [dispatch]);
 
-  const handleUpdate = (song: dbSong)=>{
-    dispatch(setFormData({ field: 'title', value: song.title }));
-    dispatch(setFormData({ field: 'artist', value: song.artist }));
-    dispatch(setFormData({ field: 'album', value: song.album }));
-    dispatch(setFormData({ field: 'genre', value: song.genre }));
-    dispatch(setFormData({ field: '_id', value: song._id }));
+  const handleUpdate = (song: dbSong) => {
+    dispatch(setFormData({ field: "title", value: song.title }));
+    dispatch(setFormData({ field: "artist", value: song.artist }));
+    dispatch(setFormData({ field: "album", value: song.album }));
+    dispatch(setFormData({ field: "genre", value: song.genre }));
+    dispatch(setFormData({ field: "_id", value: song._id }));
     dispatch(setFormMode(true));
-  }
 
-  const handleDelete = (id: string) =>{
-    dispatch(actions.deleteSong(id))
-    dispatch(removeSong(id))
-  }
+    openModal();
+
+    const container = document.getElementById("addSong");
+    container?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleDelete = (id: string) => {
+    dispatch(actions.deleteSong(id));
+    dispatch(removeSong(id));
+    toast.success("Song Deleted");
+  };
+
+  const handleSubmit = (formData: formData) => {
+  
+      dispatch(actions.updateSong(formData));
+      dispatch(updateSong(formData));
+      toast.success("Update Successful");
+    
+    dispatch(resetForm());
+  };
+
 
   const filteredSongs = songs.filter((song) => {
     const searchTermLower = searchTerm.toLowerCase();
@@ -80,29 +119,29 @@ const Songs: React.FC = () => {
       return true;
     }
 
-    if (searchTerm  && genre) {
-      
+    if (searchTerm && genre) {
       return (
         song.genre.toLowerCase().includes(genreLower) &&
         (song.title.toLowerCase().includes(searchTermLower) ||
           song.artist.toLowerCase().includes(searchTermLower) ||
-          song.album.toLowerCase().includes(searchTermLower)) 
+          song.album.toLowerCase().includes(searchTermLower))
       );
     }
-    
-    if (genre){
-      return song.genre.toLowerCase().includes(genreLower)
+
+    if (genre) {
+      return song.genre.toLowerCase().includes(genreLower);
     }
 
     if (searchTerm) {
-      return (song.title.toLowerCase().includes(searchTermLower) ||
-      song.artist.toLowerCase().includes(searchTermLower) ||
-      song.album.toLowerCase().includes(searchTermLower));
+      return (
+        song.title.toLowerCase().includes(searchTermLower) ||
+        song.artist.toLowerCase().includes(searchTermLower) ||
+        song.album.toLowerCase().includes(searchTermLower)
+      );
     }
   });
 
-  return (
-    filteredSongs.length != 0 ?
+  return filteredSongs.length != 0 ? (
     <TableContainer>
       <thead>
         <tr>
@@ -126,6 +165,13 @@ const Songs: React.FC = () => {
                 icon={faPencilAlt}
                 onClick={() => handleUpdate(song)}
               />
+              {isModalOpen && (
+            <Modal onClose={closeModal}>
+              <h2>Update Song</h2>
+            <Form onSubmit={handleSubmit} addButtonTitle='Update' />
+          </Modal>
+            )}
+              {/* <Song onClick={handleUpdate(song)}/> */}
             </TableData>
             <TableData>
               <StyledButton
@@ -139,7 +185,9 @@ const Songs: React.FC = () => {
           </tr>
         ))}
       </tbody>
-    </TableContainer> : <h3>No Songs To Show</h3>
+    </TableContainer>
+  ) : (
+    <h3>No Songs To Show</h3>
   );
 };
 

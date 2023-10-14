@@ -24,7 +24,10 @@ export interface Artist {
 }
 
 export interface GenreStat {
-    _id: string;
+    _id: {
+      name: string;
+      _id: string;
+    };
     count: number;
 }
 
@@ -36,10 +39,16 @@ export interface StatCount {
 }
 
 export interface ArtistStat {
-    _id: string;
+    _id: {
+      name: string;
+      _id: string;
+    };
     numberOfSongs: number;
-    artist: string;
-    numberOfAlbums: number
+    artist: {
+      name: string;
+      _id: string;
+    };
+    numberOfAlbums: number;
 }
 
 export interface SongsInEachAlbumStat {

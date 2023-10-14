@@ -1,20 +1,25 @@
-import React from 'react';
-import styled from '@emotion/styled';
-import { useSelector, useDispatch } from 'react-redux';
+import React from "react";
+import styled from "@emotion/styled";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store/reducers";
 
-import { setFormData, setFormMode, resetForm } from '../../store/formSlice';
-import { initialState, FormState } from '../../store/formSlice';
+import { setFormData, setFormMode, resetForm } from "../../store/formSlice";
+import { initialState, FormState } from "../../store/formSlice";
 
 const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 400px;
+  width: 400px;
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 4px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 200px) {
+    max-width: 200px;
+    font-size: 10px;
+  }
 `;
 
 const FormGroup = styled.div`
@@ -61,6 +66,7 @@ const Button = styled.button`
 
 type FormProps = {
   onSubmit: (formData: FormData) => void;
+  addButtonTitle: string;
 };
 
 type FormData = {
@@ -71,13 +77,13 @@ type FormData = {
   genre: string;
 };
 
-const Form: React.FC<FormProps> = ({ onSubmit }) => {
-  
+const Form: React.FC<FormProps> = ({ onSubmit, addButtonTitle }) => {
   const dispatch = useDispatch();
   const formData = useSelector((state: RootState) => state.form.formData);
 
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     if (name in initialState.formData) {
       dispatch(setFormData({ field: name as keyof FormState, value }));
@@ -86,10 +92,10 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
     }
   };
 
-  const handleClearForm = () =>{
+  const handleClearForm = () => {
     dispatch(resetForm());
     dispatch(setFormMode(false));
-  }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -107,6 +113,7 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
             name="title"
             value={formData.title}
             onChange={handleInputChange}
+            required
           />
         </FormGroup>
 
@@ -118,6 +125,7 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
             name="artist"
             value={formData.artist}
             onChange={handleInputChange}
+            required
           />
         </FormGroup>
 
@@ -129,25 +137,48 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
             name="album"
             value={formData.album}
             onChange={handleInputChange}
+            required
           />
         </FormGroup>
 
         <FormGroup>
           <Label htmlFor="genre">Genre</Label>
-          <Select id="genre" name="genre" value={formData.genre} onChange={handleInputChange}>
-            <option value="">Select a genre</option>
-            <option value="rock">Rock</option>
+          <Select
+            id="genre"
+            name="genre"
+            value={formData.genre}
+            onChange={handleInputChange}
+            required
+          >
+            <option value="" disabled>
+              Select a genre
+            </option>
             <option value="pop">Pop</option>
+            <option value="rock">Rock</option>
             <option value="hip-hop">Hip Hop</option>
+            <option value="Reggae">Reggae</option>
+            <option value="R&B (Rhythm and Blues)">
+              R&B (Rhythm and Blues)
+            </option>
+            <option value="Country">Country</option>
             <option value="jazz">Jazz</option>
+            <option value="Blues">Blues</option>
+            <option value="Gospel">Gospel</option>
+            <option value="Funk">Funk</option>
+            <option value="Soul">Soul</option>
+            <option value="Dance">Dance</option>
+            <option value="Latin">Latin</option>
+            <option value="Electronic">Electronic</option>
+            <option value="Classical">Classical</option>
+            <option value="Folk">Folk</option>
+            <option value="Alternative">Alternative</option>
+            <option value="Indie">Indie</option>
+            <option value="Metal">Metal</option>
           </Select>
         </FormGroup>
         <ButtonContainer>
-          <Button type="submit">Add</Button>
-          <Button
-            type="button"
-            onClick={handleClearForm}
-          >
+          <Button type="submit">{addButtonTitle}</Button>
+          <Button type="button" onClick={handleClearForm}>
             Clear
           </Button>
         </ButtonContainer>

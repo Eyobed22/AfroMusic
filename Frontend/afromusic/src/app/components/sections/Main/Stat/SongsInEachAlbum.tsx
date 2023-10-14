@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import Table from "./Table";
+import Table from "../../../Table";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store/reducers";
-import * as actions from "../../store/actions";
+import { RootState } from "../../../../../store/reducers";
+import * as actions from "../../../../../store/actions";
 
 
 const SongsInEachAlbum: React.FC = () => {

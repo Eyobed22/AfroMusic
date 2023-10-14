@@ -1,6 +1,7 @@
-import React from 'react';
-import styled from '@emotion/styled';
-import heroImage from '../../assets/images/Musicians.jpg'
+import React from "react";
+import styled from "@emotion/styled";
+import heroImage from "../../../../assets/images/Musicians.jpg";
+import StyledButton from "../../../styledComponents/StyledButton";
 
 const HeroContainer = styled.div`
   display: flex;
@@ -66,6 +67,20 @@ const HeroImage = styled.img`
   }
 `;
 
+const ButtonContainer = styled.div`
+  padding-top: 40px;
+  @media (max-width: 768px) {
+    padding-top: 20px;
+  }
+`;
+
+const handleSmoothScroll = (targetId: string) => {
+  const targetElement = document.getElementById(targetId);
+  if (targetElement) {
+    targetElement.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
 const HeroSection: React.FC = () => {
   return (
     <HeroContainer>
@@ -73,13 +88,19 @@ const HeroSection: React.FC = () => {
         <HeroText>
           <h1>Welcome to Afro Music</h1>
           <p>Discover the world of Songs</p>
+          <ButtonContainer>
+            <StyledButton
+              onClick={() => handleSmoothScroll("start")}
+              text="Get Started"
+              color="#023047"
+            />
+          </ButtonContainer>
         </HeroText>
         {/* <HeroImagePlaceholder /> */}
-        <HeroImage src={heroImage} alt='Hero image'></HeroImage>
+        <HeroImage src={heroImage} alt="Hero image"></HeroImage>
       </HeroContent>
     </HeroContainer>
   );
 };
-
 
 export default HeroSection;

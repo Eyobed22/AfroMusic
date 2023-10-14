@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 const Nav = styled.nav`
   position: sticky;
   top: 0;
   z-index: 999;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   background-color: #333;
   color: #fff;
   padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 `;
 
 const Logo = styled.div`
@@ -21,36 +23,18 @@ const Logo = styled.div`
 
 const BurgerMenu = styled.div<{ isOpen: boolean }>`
   display: none;
-  flex-direction: column;
   cursor: pointer;
-
-  span {
-    width: 25px;
-    height: 3px;
-    background-color: #fff;
-    margin-bottom: 4px;
-    transition: all 0.3s linear;
-  }
+  padding: 10px;
 
   @media (max-width: 768px) {
     display: flex;
+    align-items: center;
   }
 
-  ${(props) =>
-    props.isOpen &&
-    `
-    span:first-of-type {
-      transform: rotate(45deg) translate(-1px, 1px);
-    }
-
-    span:nth-of-type(2) {
-      opacity: 0;
-    }
-
-    span:last-of-type {
-      transform: rotate(-45deg) translate(-2px, -1px);
-    }
-  `}
+  .fa-bars {
+    font-size: 24px;
+    color: #fff;
+  }
 `;
 
 const NavMenu = styled.ul<{ isOpen: boolean }>`
@@ -81,13 +65,12 @@ const NavItem = styled.li`
   }
 `;
 
-
 const NavBar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleMenuToggle: () => void = () => {
-  setIsMenuOpen(!isMenuOpen);
-};
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   const handleSmoothScroll = (targetId: string) => {
     const targetElement = document.getElementById(targetId);
@@ -99,20 +82,16 @@ const NavBar: React.FC = () => {
 
   return (
     <Nav>
-      <Logo onClick={() => handleSmoothScroll('home')}>Logo Name</Logo>
+      <Logo onClick={() => handleSmoothScroll('home')}>Afro Music</Logo>
       <BurgerMenu onClick={handleMenuToggle} isOpen={isMenuOpen}>
-        <span />
-        <span />
-        <span />
+        <FontAwesomeIcon icon={faBars} className="fa-bars" />
       </BurgerMenu>
       <NavMenu isOpen={isMenuOpen}>
         <NavItem onClick={() => handleSmoothScroll('songList')}>Song Lists</NavItem>
-        <NavItem onClick={() => handleSmoothScroll('addSong')}>Add Song</NavItem>
         <NavItem onClick={() => handleSmoothScroll('viewStatistics')}>View Statistics</NavItem>
       </NavMenu>
     </Nav>
   );
 };
-
 
 export default NavBar;

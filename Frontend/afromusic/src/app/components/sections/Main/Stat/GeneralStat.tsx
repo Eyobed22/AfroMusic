@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import Table from "./Table";
+import Table from "../../../Table";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store/reducers";
-import * as actions from "../../store/actions";
+import { RootState } from "../../../../../store/reducers";
+import * as actions from "../../../../../store/actions";
 
 const GeneralStat = () => {
   const dispatch = useDispatch();
@@ -13,16 +13,18 @@ const GeneralStat = () => {
   }, [dispatch]);
   console.log("Stat Count: ", statCount);
 
-    // Check if the statCount is not empty
-    if (statCount.length === 0) {
-        return null; // or render a loading spinner or placeholder
-    }   
+  if (statCount.length === 0) {
+    return null; 
+  }
 
-    const data = Object.entries(statCount[0]).map(([item, count]) => [item, count]);
+  const data = Object.entries(statCount[0]).map(([item, count]) => [
+    item,
+    count,
+  ]);
 
   return (
     <div>
-      <Table headers={['Item', 'Count']} data={data} />
+      <Table headers={["Item", "Count"]} data={data} />
     </div>
   );
 };
