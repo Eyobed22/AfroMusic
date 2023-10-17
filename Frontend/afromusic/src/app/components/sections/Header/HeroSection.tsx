@@ -8,8 +8,13 @@ const HeroContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  /* background-color: #f7f7f7; */
+  width: 100%;
   background: linear-gradient(to bottom, #392d69, #b57bee);
+
+  @media (max-width: 768px){
+    height: 50rem;
+    width: 100vw;
+  }
 `;
 
 const HeroContent = styled.div`
@@ -41,18 +46,7 @@ const HeroText = styled.div`
 
   @media (max-width: 768px) {
     margin-bottom: 40px;
-  }
-`;
-
-const HeroImagePlaceholder = styled.div`
-  width: 50%;
-  height: 400px;
-  background-color: #ddd;
-  border-radius: 8px;
-
-  @media (max-width: 768px) {
-    width: 100%;
-    height: 300px;
+    margin-top: 150px;
   }
 `;
 
@@ -62,8 +56,8 @@ const HeroImage = styled.img`
   border-radius: 8px;
 
   @media (max-width: 768px) {
-    width: 100%;
-    height: 300px;
+    width: 80%;
+    height: 250px;
   }
 `;
 
@@ -96,7 +90,6 @@ const HeroSection: React.FC = () => {
             />
           </ButtonContainer>
         </HeroText>
-        {/* <HeroImagePlaceholder /> */}
         <HeroImage src={heroImage} alt="Hero image"></HeroImage>
       </HeroContent>
     </HeroContainer>

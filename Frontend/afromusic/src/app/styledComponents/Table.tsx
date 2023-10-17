@@ -1,15 +1,15 @@
-import React from 'react';
-import { css, SerializedStyles } from '@emotion/react';
-import styled from '@emotion/styled';
+import React from "react";
+import { css, SerializedStyles } from "@emotion/react";
+import styled from "@emotion/styled";
 
-
-// Define the Emotion CSS styles
 const tableStyles: SerializedStyles = css`
   width: 100%;
   border-collapse: collapse;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+
 `;
 
 const thStyles: SerializedStyles = css`
@@ -23,9 +23,12 @@ const tdStyles: SerializedStyles = css`
   border-bottom: 1px solid #ddd;
 `;
 
-// Define the styled components
 const TableContainer = styled.table`
   ${tableStyles}
+  @media (max-width: 730px){
+    width: 23rem;
+    margin-right: 30px;
+  }
 `;
 
 const TableHeader = styled.th`
@@ -41,9 +44,6 @@ type TableProps = {
   data: string[][];
 };
 
-
-
-// Define the Table component
 const Table: React.FC<TableProps> = ({ headers, data }) => {
   return (
     <TableContainer>

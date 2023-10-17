@@ -1,125 +1,135 @@
 import React from "react";
-import Songs from "./app/components/Songs";
-import Song from "./app/components/Song";
+import Songs from "./app/components/sections/Main/Song/Songs";
+import Song from "./app/components/sections/Main/Song/Song";
 import HeroSection from "./app/components/sections/Header/HeroSection";
 import styled from "@emotion/styled";
-import Search from "./app/components/Search";
-import GenreSelector from "./app/components/GenreSelector";
+import Search from "./app/styledComponents/Search/Search";
+import GenreSelector from "./app/styledComponents/Search/GenreSelector";
 import GenresStat from "../src/app/components/sections/Main/Stat/GenresStat";
 import GeneralStat from "./app/components/sections/Main/Stat/GeneralStat";
 import ArtistStat from "./app/components/sections/Main/Stat/ArtistStat";
 import SongsInEachAlbum from "./app/components/sections/Main/Stat/SongsInEachAlbum";
 import Navbar from "./app/components/sections/Header/Navabr/Navbar";
+import Footer from "./app/components/sections/Footer/Footer";
 
-const AppContainer = styled.div``;
-
-const NavbarContainer = styled.div`
-  * {
-    margin: 0;
-    padding: 0;
-  }
-  height: 100%;
-  padding: 10px;
-`;
-
-const Container = styled.div`
-  height: 100%;
-  padding-top: 30px;
-`;
-
-const MainContainer = styled.div`
+const HeaderContainer = styled.div`
   display: flex;
-  align-items: center;
-  margin-left: 30px;
-  margin-right: 30px;
-`;
-
-const MusicListHeader = styled.h1`
-  margin-top: 50px;
-`;
-
-const SongContainer = styled.div`
-  padding-top: 40px;
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-bottom: 50px;
-`;
-const StatContainer = styled.div`
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  grid-gap: 50px;
-  padding-top: 40px;
-  padding-left: 30px;
-  padding-right: 30px;
-  height: 100vh;
-`;
-
-const Stat = styled.div`
-  display: grid;
-  grid-template-rows: 2;
-  grid-gap: 20px;
+  flex-direction: column;
+  height: 100%;
+  
 `;
 
 const SearchContainer = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 30px;
+  justify-content: space-between;
+  margin-top: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+  
+
+  @media (max-width: 720px) {
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 30px;
+  }
 `;
-const GenreSelectorContainer = styled.div`
+
+const DisplaySongsContainer = styled.div`
   display: flex;
-  justify-content: flex-end;
-  padding-right: 100px;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: 50px;
+
+  h1{
+    margin-bottom: 30px;
+  }
+
+  div{
+    margin-bottom: 20px;
+  }
 `;
+
+const StatContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2,1fr);
+  grid-auto-rows: minmax(200px, auto);
+  grid-auto-columns: minmax(200px, auto);
+  column-gap: 20px;
+  margin-top: 100px;
+  padding-left: 30px;
+  padding-right: 30px;
+
+  @media (max-width: 730px){
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+
+  }
+`
+
+const StatContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-top: 50px;
+  h2{
+    margin-bottom: 20px;
+  }
+`
 
 const App: React.FunctionComponent = () => {
   return (
-    <AppContainer>
-      {/* <NavBar /> */}
-      <NavbarContainer>
+    <>
+      <HeaderContainer>
         <Navbar />
-      </NavbarContainer>
-      <div id="home">
         <HeroSection />
-      </div>
-      <SearchContainer id="start">
+      </HeaderContainer>
+      <SearchContainer>
         <Search />
-      </SearchContainer>
-      <GenreSelectorContainer>
         <GenreSelector />
-      </GenreSelectorContainer>
-      <Container id="songList">
-        <MainContainer>
-          <MusicListHeader>Afro Music</MusicListHeader>
-        </MainContainer>
-        <SongContainer id="addSong">
-          <Song />
-        </SongContainer>
-        <MainContainer>
-          <Songs />
-        </MainContainer>
-      </Container>
-
-      <StatContainer id="viewStatistics">
-        <MusicListHeader>Afro Music Stat</MusicListHeader>
-        <Stat>
-          <h3>Overall stat</h3>
+      </SearchContainer>
+      <DisplaySongsContainer>
+        <h1>Afro Music</h1>
+        <div>
+        <Song />
+        </div>
+        <Songs />
+      </DisplaySongsContainer>
+      <StatContainer>
+        <StatContent>
+          <h2>General Stat</h2>
           <GeneralStat />
-        </Stat>
-        <Stat>
-          <h3>Genre Stat</h3>
-          <GenresStat />
-        </Stat>
-        <Stat>
-          <h3>Artist Stat</h3>
-          <ArtistStat />
-        </Stat>
-        <Stat>
-          <h3>Number of Songs In Each Album</h3>
+        </StatContent>
+        <StatContent>
+          <h2>Number of songs in each album</h2>
           <SongsInEachAlbum />
-        </Stat>
+        </StatContent>
+        <StatContent>
+          <h2>Artist Stat</h2>
+          <ArtistStat />
+        </StatContent>
+        <StatContent>
+          <h2>Genre Stat</h2>
+          <GenresStat />
+        </StatContent>
       </StatContainer>
-    </AppContainer>
+      <Footer text="© 2023 Afro Music" />
+      {/* <h2>Afro Music</h2>
+      <Song />
+      <Songs />
+      <h2>Afro Music Stat</h2>
+      <h3>Overall Stat</h3>
+      <GeneralStat />
+      <h3>Genre Stat</h3>
+      <GenresStat />
+      <h3>Artist Stat</h3>
+      <ArtistStat />
+      <h3>Number of Songs In Each Album</h3>
+      <SongsInEachAlbum />
+      <Footer text="© 2023 Afro Music" /> */}
+    </>
   );
 };
 

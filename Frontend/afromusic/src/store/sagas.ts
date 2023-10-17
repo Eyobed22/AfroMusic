@@ -42,7 +42,6 @@ function* fetchSongs(): Generator{
         yield put(actions.setSongs(response.data));
         
     }catch(error){
-        // error
         console.error("fetchSongs error: ", error)
     }
 }

@@ -1,11 +1,9 @@
-// GenreSelector.tsx
-import React, { useState } from 'react';
-import styled from '@emotion/styled';
+import React, { useState } from "react";
+import styled from "@emotion/styled";
 
-import { useDispatch } from 'react-redux';
-import { setGenreFilter } from '../../store/genreFilterSlice';
+import { useDispatch } from "react-redux";
+import { setGenreFilter } from "../../../store/genreFilterSlice";
 
-// Styled components
 const SelectorContainer = styled.div`
   position: relative;
   width: 200px;
@@ -13,6 +11,7 @@ const SelectorContainer = styled.div`
 
   @media (max-width: 760px) {
     margin-top: 50px;
+    z-index: 5;
   }
 `;
 
@@ -26,7 +25,7 @@ const Select = styled.select`
   outline: none;
   appearance: none;
   cursor: pointer;
-  z-index: 2; /* Increase the z-index */
+  z-index: 2;
 `;
 
 interface ArrowIconProps {
@@ -39,30 +38,32 @@ const ArrowIcon = styled.span<ArrowIconProps>`
   right: 10px;
   transform: translateY(-50%);
   transition: transform 0.3s ease;
-  transform: ${({ isOpen }) => (isOpen ? 'translateY(-50%) rotate(180deg)' : 'translateY(-50%) rotate(0deg)')};
+  transform: ${({ isOpen }) =>
+    isOpen
+      ? "translateY(-50%) rotate(180deg)"
+      : "translateY(-50%) rotate(0deg)"};
 `;
 
-// Example genre options
 const genres: string[] = [
-  'Pop',
-  'Rock',
-  'hip-hop',
-  'Reggae',
-  'R&B (Rhythm and Blues)',
-  'Country',
-  'Jazz',
-  'Blues',
-  'Gospel',
-  'Funk',
-  'Soul',
-  'Dance',
-  'Latin',
-  'Electronic',
-  'Classical',
-  'Folk',
-  'Alternative',
-  'Indie',
-  'Metal',
+  "Pop",
+  "Rock",
+  "hip-hop",
+  "Reggae",
+  "R&B (Rhythm and Blues)",
+  "Country",
+  "Jazz",
+  "Blues",
+  "Gospel",
+  "Funk",
+  "Soul",
+  "Dance",
+  "Latin",
+  "Electronic",
+  "Classical",
+  "Folk",
+  "Alternative",
+  "Indie",
+  "Metal",
 ];
 
 const GenreSelector: React.FC = () => {
@@ -79,7 +80,11 @@ const GenreSelector: React.FC = () => {
 
   return (
     <SelectorContainer>
-      <Select onChange={handleGenreChange} onClick={toggleOpen} onBlur={toggleOpen}>
+      <Select
+        onChange={handleGenreChange}
+        onClick={toggleOpen}
+        onBlur={toggleOpen}
+      >
         <option value="">All Genre</option>
         {genres.map((genre) => (
           <option key={genre} value={genre}>

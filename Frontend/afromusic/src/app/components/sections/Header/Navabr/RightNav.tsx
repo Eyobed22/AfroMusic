@@ -1,4 +1,3 @@
-// RightNav.tsx
 import React from "react";
 import styled from "styled-components";
 
@@ -27,16 +26,18 @@ const Ul = styled.ul<RightNavProps>`
     flex-flow: column nowrap;
     background-color: #002538;
     position: fixed;
-    top: 55px;
-    right: ${({ open }: RightNavProps) => (open ? "0" : "-300px")};
-    height: calc(100vh - 55px);
-    width: 300px;
+    top: 65px;
+    right: ${({ open }: RightNavProps) => (open ? "0" : "-100%")};
+    height: calc(100vh - 65px);
+    width: 200px;
     padding-top: 3.5rem;
     transition: right 0.3s ease-in-out;
-    z-index: 10; /* Add z-index to ensure the dropdown appears below the burger menu */
+    z-index: 10;
 
     li {
       color: #ffffff;
+      padding: 15px;
+      text-align: center;
     }
   }
 `;

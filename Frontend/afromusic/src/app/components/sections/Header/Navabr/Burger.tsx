@@ -1,4 +1,3 @@
-// StyleBurger.tsx
 import React, { useState } from "react";
 import styled from "styled-components";
 import RightNav from "./RightNav";
@@ -8,7 +7,7 @@ interface StyleBurgerProps {
 }
 
 const StyleBurger = styled.div<StyleBurgerProps>`
-  width: 2rem;
+  width: 1rem;
   height: 2rem;
   position: fixed;
   top: 15px;
@@ -20,18 +19,14 @@ const StyleBurger = styled.div<StyleBurgerProps>`
   flex-flow: column nowrap;
   cursor: pointer;
 
-  display: none;
-
-  @media (max-width: 760px) {
-    display: flex;
-    justify-content: space-around;
-    flex-flow: column nowrap;
+  @media (min-width: 761px) {
+    display: none;
   }
 
   div {
     width: 2rem;
     height: 0.25rem;
-    background-color: ${({ open }) => (open ? "#ccc" : "#333")};
+    background-color: ${({ open }) => (open ? "#ccc" : "#ffffff")};
     border-radius: 10px;
     transform-origin: 1px;
     transition: all 0.3s linear;
@@ -41,7 +36,8 @@ const StyleBurger = styled.div<StyleBurgerProps>`
     }
 
     &:nth-child(2) {
-      transform: ${({ open }) => (open ? "translateX(100%)" : "translateX(0)")};
+      transform: ${({ open }) =>
+        open ? "translateX(100%)" : "translateX(0)"};
       opacity: ${({ open }) => (open ? 0 : 1)};
     }
 
@@ -61,8 +57,7 @@ const Burger: React.FC = () => {
         <div />
         <div />
       </StyleBurger>
-      {open && <div style={{ height: "55px" }} />}{" "}
-      {/* Spacer for the open menu */}
+      {open && <div style={{ height: "55px" }} />}
       <RightNav open={open} />
     </>
   );

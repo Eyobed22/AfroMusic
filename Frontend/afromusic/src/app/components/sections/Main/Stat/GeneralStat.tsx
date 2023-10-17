@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Table from "../../../Table";
+import Table from "../../../../styledComponents/Table";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../../store/reducers";
 import * as actions from "../../../../../store/actions";
@@ -11,10 +11,9 @@ const GeneralStat = () => {
   useEffect(() => {
     dispatch(actions.readAllStatCount());
   }, [dispatch]);
-  console.log("Stat Count: ", statCount);
 
   if (statCount.length === 0) {
-    return null; 
+    return null;
   }
 
   const data = Object.entries(statCount[0]).map(([item, count]) => [

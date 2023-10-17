@@ -1,9 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { dbSong } from "../types";
 
-// export interface RootState {
-//     songs: dbSong[]
-// }
 
 const songSlice = createSlice({
     name: 'songs',

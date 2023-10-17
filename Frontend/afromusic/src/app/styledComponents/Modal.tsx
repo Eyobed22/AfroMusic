@@ -1,7 +1,7 @@
-import React, { ReactNode } from 'react';
-import styled from '@emotion/styled';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import React, { ReactNode } from "react";
+import styled from "@emotion/styled";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const ModalWrapper = styled.div`
   position: fixed;
@@ -14,6 +14,12 @@ const ModalWrapper = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 50px;
+
+  @media (max-width: 750px) {
+    margin: 0;
+    padding: 20px;
+    align-items: flex-start;
+  }
 `;
 
 const ModalContentWrapper = styled.div`
