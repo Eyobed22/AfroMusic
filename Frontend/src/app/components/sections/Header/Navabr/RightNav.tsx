@@ -18,7 +18,7 @@ const Ul = styled.ul<RightNavProps>`
     transition: color 0.2s ease;
 
     &:hover {
-      color: #023047;
+      color: #2a9d8f;
     }
   }
 
@@ -53,9 +53,7 @@ const RightNav: React.FC<RightNavProps> = ({ open }) => {
   return (
     <Ul open={open}>
       <li onClick={() => handleSmoothScroll("songList")}>Song-List</li>
-      <li onClick={() => handleSmoothScroll("viewStatistics")}>
-        Afro-Music-Stat
-      </li>
+      <li onClick={() => handleSmoothScroll("viewStatistics")}>Afro-Music-Stat</li>
     </Ul>
   );
 };

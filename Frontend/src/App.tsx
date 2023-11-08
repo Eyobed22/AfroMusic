@@ -82,7 +82,7 @@ const StatContent = styled.div`
 const App: React.FunctionComponent = () => {
   return (
     <>
-      <HeaderContainer>
+      <HeaderContainer id="start">
         <Navbar />
         <HeroSection />
       </HeaderContainer>
@@ -90,14 +90,14 @@ const App: React.FunctionComponent = () => {
         <Search />
         <GenreSelector />
       </SearchContainer>
-      <DisplaySongsContainer>
+      <DisplaySongsContainer id="songList">
         <h1>Afro Music</h1>
         <div>
         <Song />
         </div>
         <Songs />
       </DisplaySongsContainer>
-      <StatContainer>
+      <StatContainer id="viewStatistics">
         <StatContent>
           <h2>General Stat</h2>
           <GeneralStat />

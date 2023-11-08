@@ -15,11 +15,6 @@ const Nav = styled.nav`
   position: fixed;
   z-index: 5;
 
-  .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-
   @media (max-width: 760px) {
     z-index: 15;
     .logo {
@@ -28,10 +23,27 @@ const Nav = styled.nav`
   }
 `;
 
+const StyledTitle = styled.h1`
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: bold;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+const handleSmoothScroll = (targetId: string) => {
+  const targetElement = document.getElementById(targetId);
+  if (targetElement) {
+    targetElement.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
 const Navbar: React.FC = () => {
   return (
     <Nav>
-      <div className="logo">Afro Music</div>
+      <StyledTitle onClick={()=>handleSmoothScroll('start')}>Afro Music</StyledTitle>
       <Burger />
     </Nav>
   );
