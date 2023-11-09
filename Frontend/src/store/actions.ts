@@ -9,7 +9,7 @@ export const readAllSongs = createAction('songs/readAllSongs');
 export const deleteSong = createAction<string>('songs/deleteSong');
 
 export const setGenresStat = createAction<PayloadAction<GenreStat[]>>('songsInGenreCount');
-export const readAllGenreStat = createAction('songsInGenreCount');
+export const readAllGenreStat = createAction('songsInGenreCount',);
 
 export const setStatCount = createAction<PayloadAction<StatCount[]>>('statCount');
 export const readAllStatCount = createAction('statCount');

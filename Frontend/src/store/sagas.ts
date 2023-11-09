@@ -48,9 +48,9 @@ function* fetchSongs(): Generator{
 
 function* fetchGenreStat(): Generator{
     try{
-        const response = yield call(api.get, '/songsInGenreCount');
+        const response:any = yield call(api.get, '/songsInGenreCount');
         yield put(setGenrestat(response.data));
-        
+        yield put(actions.setGenresStat(response.data));
     }catch(err){
         console.log(err)
     }
@@ -60,31 +60,34 @@ function* fetchStatCount(): Generator{
     try{
         const response = yield call(api.get, '/statCount');
         yield put(setStatCount(response.data))
+        yield put(actions.setStatCount(response.data));
     }catch(err){
-        console.log('Fetching statCount error', err)
+        console.log('Fetching statCount error', err);
     }
 }
 
 function* fetchArtistStat(): Generator{
     try{
         const response = yield call(api.get, '/artistData');
-        yield put(setArtistStat(response.data))
+        yield put(setArtistStat(response.data));
+        yield put(actions.setArtistStat(response.data));
     }catch(err){
-        console.log('Fetching Artist Stat error ', err)
+        console.log('Fetching Artist Stat error ', err);
     }
 }
 
 function* fetchSongsInEachAlbumCount(): Generator{
     try{
         const response = yield call(api.get, '/songsInEachAlbum');
-        yield put(setSongsInEachAlbumCount(response.data))
+        yield put(setSongsInEachAlbumCount(response.data));
+        yield put(actions.setSongsInEachAlbumStat(response.data));
     }catch(err){
-        console.log('Fetching Songs In each album', err)
+        console.log('Fetching Songs In each album', err);
     }
 }
 
 
-// take a look here for which actions to remove 
+
 function* songSaga(){
     yield takeEvery(actions.createSong.type, createSong);
     yield takeEvery(actions.updateSong.type, updatedSong);
