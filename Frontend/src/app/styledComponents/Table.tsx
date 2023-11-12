@@ -1,6 +1,7 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { css, SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
+
 
 const tableStyles: SerializedStyles = css`
   width: 100%;
@@ -41,7 +42,7 @@ const TableData = styled.td`
 
 type TableProps = {
   headers: string[];
-  data: string[][];
+  data: (string | ReactNode | undefined)[][];
 };
 
 const Table: React.FC<TableProps> = ({ headers, data }) => {

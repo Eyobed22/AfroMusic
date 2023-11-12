@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Table from "../../../../styledComponents/Table";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../../store/reducers";

@@ -6,7 +6,7 @@ const SongsInEachAlbumSlice = createSlice({
     name: 'artistStat',
     initialState: [] as SongsInEachAlbumStat[],
     reducers: {
-        setSongsInEachAlbumCount: (state, action: PayloadAction<SongsInEachAlbumStat[]>) => action.payload,
+        setSongsInEachAlbumCount: (_state, action: PayloadAction<SongsInEachAlbumStat[]>) => action.payload,
     }
 });
 

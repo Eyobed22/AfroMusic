@@ -6,7 +6,7 @@ const ArtistStatSlice = createSlice({
     name: 'artistStat',
     initialState: [] as ArtistStat[],
     reducers: {
-        setArtistStat: (state, action: PayloadAction<ArtistStat[]>) => action.payload,
+        setArtistStat: (_state, action: PayloadAction<ArtistStat[]>) => action.payload,
     }
 });
 

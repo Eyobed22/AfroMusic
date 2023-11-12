@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import * as actions from './actions';
 import api from '../api';
-import { Song, dbSong } from '../types';
+import { Song, dbSong} from '../types';
 import { PayloadAction } from '@reduxjs/toolkit';
 import { setGenrestat } from './genreStatSlice';
 import { setStatCount } from './statCountSlice';
@@ -38,7 +38,7 @@ function* deleteSong(action: PayloadAction<string>){
 
 function* fetchSongs(): Generator{
     try{
-        const response = yield call(api.get, '/songs');
+        const response:any = yield call(api.get, '/songs') ;
         yield put(actions.setSongs(response.data));
         
     }catch(error){
@@ -58,7 +58,7 @@ function* fetchGenreStat(): Generator{
 // other should be the same like this 
 function* fetchStatCount(): Generator{
     try{
-        const response = yield call(api.get, '/statCount');
+        const response:any = yield call(api.get, '/statCount');
         yield put(setStatCount(response.data))
         yield put(actions.setStatCount(response.data));
     }catch(err){
@@ -68,7 +68,7 @@ function* fetchStatCount(): Generator{
 
 function* fetchArtistStat(): Generator{
     try{
-        const response = yield call(api.get, '/artistData');
+        const response: any = yield call(api.get, '/artistData');
         yield put(setArtistStat(response.data));
         yield put(actions.setArtistStat(response.data));
     }catch(err){
@@ -78,7 +78,7 @@ function* fetchArtistStat(): Generator{
 
 function* fetchSongsInEachAlbumCount(): Generator{
     try{
-        const response = yield call(api.get, '/songsInEachAlbum');
+        const response: any = yield call(api.get, '/songsInEachAlbum');
         yield put(setSongsInEachAlbumCount(response.data));
         yield put(actions.setSongsInEachAlbumStat(response.data));
     }catch(err){

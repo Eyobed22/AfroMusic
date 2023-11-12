@@ -36,7 +36,7 @@ const formSlice = createSlice({
         setFormMode: (state, action: PayloadAction<boolean>) => {
             state.isUpdateMode = action.payload;
         },
-        resetForm: (state) => {
+        resetForm: (_state) => {
             return initialState;
         },
     }

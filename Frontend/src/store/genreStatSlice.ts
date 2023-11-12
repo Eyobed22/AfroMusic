@@ -6,7 +6,7 @@ const GenreStatSlice = createSlice({
     name: 'genresStat',
     initialState: [] as GenreStat[],
     reducers: {
-        setGenrestat: (state, action: PayloadAction<GenreStat[]>) => action.payload,
+        setGenrestat: (_state, action: PayloadAction<GenreStat[]>) => action.payload,
         addGenrestat: (state) => [...state],
     }
 });

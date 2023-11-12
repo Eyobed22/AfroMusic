@@ -6,7 +6,7 @@ const statCountSlice = createSlice({
     name: 'statCount',
     initialState: [] as StatCount[],
     reducers: {
-        setStatCount: (state, action: PayloadAction<StatCount[]>) => action.payload,
+        setStatCount: (_state, action: PayloadAction<StatCount[]>) => action.payload,
         
     }
 });
