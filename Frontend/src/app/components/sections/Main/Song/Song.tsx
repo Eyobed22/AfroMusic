@@ -38,7 +38,6 @@ const Song: React.FC = () => {
     const { _id, ...newObject } = formData;
     dispatch(action.createSong(newObject));
     dispatch(addSong(formData));
-
     toast.success("Song added successfully");
     dispatch(resetForm());
   };

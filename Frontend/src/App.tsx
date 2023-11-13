@@ -12,7 +12,6 @@ import SongsInEachAlbum from "./app/components/sections/Main/Stat/SongsInEachAlb
 import Navbar from "./app/components/sections/Header/Navabr/Navbar";
 import Footer from "./app/components/sections/Footer/Footer";
 
-
 const HeaderContainer = styled.div`
   display: flex;
   flex-direction: column;
