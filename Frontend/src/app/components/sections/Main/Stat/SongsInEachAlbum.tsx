@@ -13,7 +13,6 @@ const SongsInEachAlbum: React.FC = () => {
   useEffect(() => {
     dispatch(actions.readAllSongsInEachAlbumStat());
   }, [dispatch]);
-  console.log("songsInEachAlbum: ", songsInEachAlbum);
 
   if (songsInEachAlbum.length === 0) {
     return null;
