@@ -33,6 +33,7 @@ router.post('/', async (req, res) => {
         
         await songs.save();
         res.send(songs)
+        console.log(songs)
     }catch(err){
         return res.status(400).send(err.message)
     }
