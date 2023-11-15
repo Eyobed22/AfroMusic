@@ -11,7 +11,6 @@ import { setSongsInEachAlbumCount } from './SongsInEachAlbumSlice';
 function* createSong(action: PayloadAction<Song>): Generator{
     try{
         yield call(api.post, '/songs', action.payload);
-        console.log(action.payload)
     }catch(error){
         console.error("createSong error: ", error)
     }
