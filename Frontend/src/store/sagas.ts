@@ -50,7 +50,7 @@ function* fetchGenreStat(): Generator{
     try{
         const response: any = yield call(api.get, '/songsInGenreCount');
         yield put(setGenrestat(response.data));
-        
+        yield put(actions.setGenresStat(response.data))
     }catch(err){
         console.log(err)
     }
@@ -60,6 +60,7 @@ function* fetchStatCount(): Generator{
     try{
         const response:any = yield call(api.get, '/statCount');
         yield put(setStatCount(response.data))
+        yield put(actions.setStatCount(response.data))
     }catch(err){
         console.log('Fetching statCount error', err)
     }
