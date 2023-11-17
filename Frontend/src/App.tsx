@@ -116,19 +116,6 @@ const App: React.FunctionComponent = () => {
         </StatContent>
       </StatContainer>
       <Footer text="© 2023 Afro Music" />
-      {/* <h2>Afro Music</h2>
-      <Song />
-      <Songs />
-      <h2>Afro Music Stat</h2>
-      <h3>Overall Stat</h3>
-      <GeneralStat />
-      <h3>Genre Stat</h3>
-      <GenresStat />
-      <h3>Artist Stat</h3>
-      <ArtistStat />
-      <h3>Number of Songs In Each Album</h3>
-      <SongsInEachAlbum />
-      <Footer text="© 2023 Afro Music" /> */}
     </>
   );
 };

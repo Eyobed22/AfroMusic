@@ -18,8 +18,6 @@ function* createSong(action: PayloadAction<Song>): Generator{
 
 function* updatedSong(action: PayloadAction<dbSong>): Generator{
     const { _id, ...newObject } = action.payload
-
-    console.log('new: ', newObject)
     try{
         yield call(api.put, `/songs/${action.payload._id}`, newObject);
     }catch(error){

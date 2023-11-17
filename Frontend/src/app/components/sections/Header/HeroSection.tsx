@@ -84,7 +84,7 @@ const HeroSection: React.FC = () => {
           <p>Discover the world of Songs</p>
           <ButtonContainer>
             <StyledButton
-              onClick={() => handleSmoothScroll("start")}
+              onClick={() => handleSmoothScroll('songList')}
               text="Get Started"
               color="#023047"
             />
